@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahlya Jimenez — Horse Portrait Artist</title>
+  <meta name="description" content="Original equine and animal portraits by Ahlya Jimenez. Commission a custom horse portrait today." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ====== Navigation ====== -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-brand">Ahlya Jimenez</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#commissions">Commissions</a></li>
+        <li><a href="commission.html" class="btn btn-primary" style="padding:0.45rem 1.1rem;">Order a Portrait</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ====== Hero ====== -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-tag">✦ Original Equine Art</span>
+      <h1>Custom Horse Portraits<br>Painted with Heart</h1>
+      <p>Send me a photo of your horse — or you and your horse together — and I'll create a one-of-a-kind portrait just for you.</p>
+      <div class="hero-cta">
+        <a href="commission.html" class="btn btn-primary">Request a Commission</a>
+        <a href="#gallery" class="btn btn-outline">View My Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== About ====== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-placeholder" aria-label="Photo of Ahlya">🎨</div>
+        <div>
+          <h2 class="section-title" style="text-align:left;">Hi, I'm Ahlya!</h2>
+          <div class="divider" style="margin-left:0;"></div>
+          <p>I'm a 16-year-old artist and junior in high school with a deep love for horses and the beauty of the natural world. Art has been part of my life for as long as I can remember, and I'm so excited to share it with you.</p>
+          <p>I specialize in equine and animal portraits — capturing the personality, spirit, and bond between horses and the people who love them. Whether you want a portrait of your beloved horse alone or a special piece of you together, I'd love to create something meaningful for you.</p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-year">1st Grade</span>
+              <p class="timeline-desc">Started drawing — never stopped.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">6th Grade</span>
+              <p class="timeline-desc">Got seriously into art; began studying technique and exploring different mediums.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">Today</span>
+              <p class="timeline-desc">Taking commissions and turning your favorite moments with your horses into lasting artwork.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Gallery ====== -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <h2 class="section-title">My Work</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">A selection of portraits and original pieces. Each one is created with care and attention to detail.</p>
+
+      <div class="gallery-grid">
+        <article class="gallery-item">
+          <div class="gallery-thumb gallery-thumb-1">🐴</div>
+          <div class="gallery-caption">
+            <h3>Chestnut Mare</h3>
+            <p>Pencil & watercolor — Commission</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-thumb gallery-thumb-2">🐎</div>
+          <div class="gallery-caption">
+            <h3>Rider at Sunset</h3>
+            <p>Colored pencil — Commission</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-thumb gallery-thumb-3">🐴</div>
+          <div class="gallery-caption">
+            <h3>Grey Stallion</h3>
+            <p>Graphite — Original</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-thumb gallery-thumb-4">🐎</div>
+          <div class="gallery-caption">
+            <h3>Mare &amp; Foal</h3>
+            <p>Watercolor — Commission</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-thumb gallery-thumb-5">🐴</div>
+          <div class="gallery-caption">
+            <h3>Black Beauty</h3>
+            <p>Charcoal — Original</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-thumb gallery-thumb-6">🐎</div>
+          <div class="gallery-caption">
+            <h3>Trail Ride</h3>
+            <p>Pencil &amp; ink — Commission</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="gallery-note">Gallery images coming soon — follow along on social media for the latest pieces!</p>
+    </div>
+  </section>
+
+  <!-- ====== Commission CTA ====== -->
+  <section class="commission-cta" id="commissions">
+    <div class="container">
+      <h2>Commission Your Portrait</h2>
+      <div class="divider"></div>
+      <p>Have a favorite photo of your horse, or a special moment with your horse you'd like to cherish forever? I'd love to bring it to life as a hand-drawn portrait. Just fill out a short form and upload your photo to get started.</p>
+      <a href="commission.html" class="btn btn-primary" style="font-size:1.05rem;padding:0.85rem 2.25rem;">Get Started →</a>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Ahlya Jimenez. All artwork is original and may not be reproduced without permission.</p>
+      <p style="margin-top:0.5rem;">Made with ♥ and lots of pencil shavings.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
