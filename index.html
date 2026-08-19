@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahlya Jimenez - Horse Portrait Artist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AHLYA JIMENEZ</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#commission" class="nav-link">Commission</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Horse Portrait Artist</h1>
+            <p>Capturing the Spirit and Beauty of Your Equine Companion</p>
+            <a href="#commission" class="cta-button">Commission a Portrait</a>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Portfolio</h2>
+            <p class="section-intro">View examples of custom horse portraits I've created</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="placeholder-image">
+                        <span>Portrait Example 1</span>
+                    </div>
+                    <h3>Custom Portrait - Equestrian</h3>
+                    <p>Acrylic on canvas</p>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="placeholder-image">
+                        <span>Portrait Example 2</span>
+                    </div>
+                    <h3>Custom Portrait - Horse & Rider</h3>
+                    <p>Mixed media</p>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="placeholder-image">
+                        <span>Portrait Example 3</span>
+                    </div>
+                    <h3>Custom Portrait - Detailed Study</h3>
+                    <p>Graphite & color pencil</p>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="placeholder-image">
+                        <span>Portrait Example 4</span>
+                    </div>
+                    <h3>Custom Portrait - Profile</h3>
+                    <p>Oil on canvas</p>
+                </div>
+            </div>
+
+            <p class="portfolio-note">
+                <em>These are example layouts. Upload your actual portrait photos here to showcase your work!</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>
+                        I'm Ahlya, a junior in high school with a passion for capturing the beauty and personality of horses. 
+                        I've been creating art since first grade, but truly found my calling in 6th grade when I discovered 
+                        my love for detailed portraiture and equestrian subjects.
+                    </p>
+                    <p>
+                        Every portrait I create is a unique representation of your horse's character and charm. Whether you're 
+                        looking for a detailed study of your companion or a beautiful portrait featuring both you and your horse, 
+                        I bring attention to detail and artistic passion to every commission.
+                    </p>
+                    <p>
+                        My work combines various mediums—from traditional graphite and colored pencils to acrylics and oils—to 
+                        create stunning, personalized portraits that celebrate the bond between horse and owner.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Section -->
+    <section id="commission" class="commission">
+        <div class="container">
+            <h2>How to Commission</h2>
+            <div class="commission-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Photos</h3>
+                    <p>Send clear, well-lit photos of your horse or you with your horse. Multiple angles help me capture the perfect pose.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Choose Your Style</h3>
+                    <p>Select your preferred medium (graphite, colored pencil, acrylic, oil) and size. We can discuss custom options.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Discuss Details</h3>
+                    <p>I'll reach out to discuss your vision, background preferences, and any special requests for your portrait.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Receive Your Art</h3>
+                    <p>Once complete, your custom portrait is carefully packaged and shipped to you. Each piece includes a certificate of authenticity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Form Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p class="section-intro">Ready to commission your horse portrait? Let's create something beautiful together.</p>
+            
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="horse-name">Horse Name(s)</label>
+                    <input type="text" id="horse-name" name="horse-name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Tell me about your portrait vision *</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="file-upload">Upload Reference Photos</label>
+                    <input type="file" id="file-upload" name="file-upload" accept="image/*" multiple>
+                    <small>You can upload multiple photos to help me understand your vision</small>
+                </div>
+                
+                <button type="submit" class="submit-button">Submit Commission Request</button>
+            </form>
+
+            <div class="contact-info">
+                <h3>Other Ways to Reach Me</h3>
+                <p>Email: <a href="mailto:london@coburn.org">london@coburn.org</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ahlya Jimenez. All rights reserved. | Hand-crafted with passion and paint.</p>
+        </div>
+    </footer>
+</body>
+</html>
