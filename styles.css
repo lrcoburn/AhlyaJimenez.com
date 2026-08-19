@@ -538,3 +538,29 @@ body {
         padding: 1.5rem;
     }
 }
+
+/* Global readable text color (non-home sections) */
+section:not(#home),
+section:not(#home) p,
+section:not(#home) li,
+section:not(#home) span,
+section:not(#home) a,
+section:not(#home) h1,
+section:not(#home) h2,
+section:not(#home) h3,
+section:not(#home) h4 {
+  color: #1f2937; /* dark gray for readability */
+}
+
+/* Keep home/hero text styling as-is (or explicitly lighter) */
+#home,
+#home p,
+#home li,
+#home span,
+#home a,
+#home h1,
+#home h2,
+#home h3,
+#home h4 {
+  color: inherit;
+}
