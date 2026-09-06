@@ -57,12 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
         currentPosition = (position + orderedEntries.length) % orderedEntries.length;
         const data = orderedEntries[currentPosition];
 
-        if (data.hasImg) {
+        if (data.hasImg && data.imgSrc) {
             lightboxImg.src = data.imgSrc;
             lightboxImg.alt = data.imgAlt;
             lightboxImg.style.display = 'block';
             lightboxPlaceholder.style.display = 'none';
         } else {
+            lightboxImg.removeAttribute('src');
             lightboxImg.style.display = 'none';
             lightboxPlaceholder.style.display = 'flex';
             lightboxPlaceholder.textContent = data.placeholderText;
@@ -131,6 +132,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    function getFocusableElements() {
+        return Array.from(
+            overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+        ).filter((el) => !el.disabled);
+    }
+
+    function trapFocus(event) {
+        if (event.key !== 'Tab') {
+            return;
+        }
+        const focusable = getFocusableElements();
+        if (focusable.length === 0) {
+            return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
     document.addEventListener('keydown', (event) => {
         if (!overlay.classList.contains('active')) {
             return;
@@ -141,6 +168,8 @@ document.addEventListener('DOMContentLoaded', function () {
             showItem(currentPosition - 1);
         } else if (event.key === 'ArrowRight') {
             showItem(currentPosition + 1);
+        } else if (event.key === 'Tab') {
+            trapFocus(event);
         }
     });
 });
