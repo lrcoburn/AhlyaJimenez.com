@@ -10,7 +10,7 @@
     --light-brown: #A89968;
     --cream: #F5E6D3;
     --accent-gold: #D4AF37;
-    --text-dark: #3D2817;
+    --text-dark: #1A0F0A;
     --wood-light: #C19A6B;
 }
 
@@ -99,7 +99,7 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="wood" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><rect width="200" height="200" fill="%238B6F47"/><line x1="0" y1="0" x2="200" y2="200" stroke="%235C4A2F" stroke-width="2" opacity="0.3"/></pattern></defs><rect width="1200" height="600" fill="url(%23wood)"/></svg>');
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="wood" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">[...]
     background-size: cover;
     background-position: center;
     padding: 150px 2rem;
@@ -174,7 +174,7 @@ body {
 .contact h2 {
     font-family: 'Cinzel', serif;
     font-size: 2.5rem;
-    color: var(--dark-brown);
+    color: #1A0F0A;
     text-align: center;
     margin-bottom: 1rem;
     letter-spacing: 2px;
@@ -183,7 +183,7 @@ body {
 .section-intro {
     text-align: center;
     font-size: 1.1rem;
-    color: var(--primary-brown);
+    color: #1A0F0A;
     margin-bottom: 3rem;
     font-style: italic;
 }
@@ -261,20 +261,20 @@ body {
 
 .portfolio-item h3 {
     padding: 1.5rem 1.5rem 0.5rem;
-    color: var(--dark-brown);
+    color: #1A0F0A;
     font-family: 'Cinzel', serif;
     font-size: 1.2rem;
 }
 
 .portfolio-item p {
     padding: 0 1.5rem 1.5rem;
-    color: var(--primary-brown);
+    color: #1A0F0A;
     font-size: 0.95rem;
 }
 
 .portfolio-note {
     text-align: center;
-    color: var(--primary-brown);
+    color: #1A0F0A;
     font-style: italic;
     margin-top: 2rem;
 }
@@ -305,7 +305,7 @@ body {
 
 .about-text p {
     margin-bottom: 1.5rem;
-    color: var(--text-dark);
+    color: #1A0F0A;
     font-size: 1.1rem;
     line-height: 1.8;
     background: rgba(245, 230, 211, 0.6);
@@ -368,13 +368,13 @@ body {
 }
 
 .step h3 {
-    color: var(--dark-brown);
+    color: #1A0F0A;
     margin-bottom: 1rem;
     font-family: 'Cinzel', serif;
 }
 
 .step p {
-    color: var(--text-dark);
+    color: #1A0F0A;
     font-size: 0.95rem;
 }
 
@@ -412,7 +412,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--dark-brown);
+    color: #1A0F0A;
     font-weight: 500;
     font-family: 'Cinzel', serif;
 }
@@ -425,7 +425,7 @@ body {
     border-radius: 4px;
     font-family: 'Lora', serif;
     font-size: 1rem;
-    color: var(--text-dark);
+    color: #1A0F0A;
     transition: border-color 0.3s ease;
 }
 
@@ -439,7 +439,7 @@ body {
 .form-group small {
     display: block;
     margin-top: 0.5rem;
-    color: var(--primary-brown);
+    color: #1A0F0A;
     font-size: 0.9rem;
 }
 
@@ -475,13 +475,13 @@ body {
 }
 
 .contact-info h3 {
-    color: var(--dark-brown);
+    color: #1A0F0A;
     margin-bottom: 1rem;
     font-family: 'Cinzel', serif;
 }
 
 .contact-info p {
-    color: var(--text-dark);
+    color: #1A0F0A;
 }
 
 .contact-info a {
