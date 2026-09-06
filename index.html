@@ -38,7 +38,7 @@
             <p class="section-intro">View examples of custom horse portraits I've created</p>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item" onclick="openLightbox(0)">
+                <div class="portfolio-item" data-index="0">
                     <div class="portfolio-image">
                         <img src="images/Acrylic.jpeg" alt="Acrylic Portrait">
                     </div>
@@ -46,7 +46,7 @@
                     <p>Acrylic</p>
                 </div>
                 
-                <div class="portfolio-item" onclick="openLightbox(1)">
+                <div class="portfolio-item" data-index="1">
                     <div class="portfolio-image">
                         <img src="images/Graphite:Black and white.jpg" alt="Graphite/Black and White Portrait">
                     </div>
@@ -54,7 +54,7 @@
                     <p>Graphite & Ink</p>
                 </div>
                 
-                <div class="portfolio-item" onclick="openLightbox(2)">
+                <div class="portfolio-item" data-index="2">
                     <div class="portfolio-image">
                         <img src="images/Mixed media image.jpeg" alt="Mixed Media Portrait">
                     </div>
@@ -62,7 +62,7 @@
                     <p>Mixed Media</p>
                 </div>
 
-                <div class="portfolio-item" onclick="openLightbox(3)">
+                <div class="portfolio-item" data-index="3">
                     <div class="portfolio-image">
                         <img src="images/Digital.jpg" alt="Digital Portrait">
                     </div>
@@ -70,7 +70,7 @@
                     <p>Digital</p>
                 </div>
 
-                <div class="portfolio-item" onclick="openLightbox(4)">
+                <div class="portfolio-item" data-index="4">
                     <div class="portfolio-image">
                         <div class="placeholder-image">Add-Ons</div>
                     </div>
@@ -197,27 +197,15 @@
         </div>
     </footer>
 
-    <!-- Full-Screen Lightbox Popup -->
+    <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
-        <!-- Close Button -->
-        <button id="closeBtn" class="lightbox-close">&times;</button>
-        
-        <!-- Left Arrow -->
-        <button id="prevBtn" class="lightbox-arrow lightbox-prev">&#10094;</button>
-        
-        <!-- Image Container -->
-        <div class="lightbox-image-container">
-            <img id="lightbox-img" src="" alt="">
-        </div>
-        
-        <!-- Right Arrow -->
-        <button id="nextBtn" class="lightbox-arrow lightbox-next">&#10095;</button>
-        
-        <!-- Info Section -->
-        <div class="lightbox-info-section">
+        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-nav lightbox-prev">❮</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next">❯</button>
+        <div class="lightbox-caption">
             <h3 id="lightbox-title"></h3>
             <p id="lightbox-desc"></p>
-            <p id="lightbox-counter" class="lightbox-counter"></p>
         </div>
     </div>
 
@@ -231,71 +219,76 @@
         ];
 
         let currentIndex = 0;
-        const lightboxEl = document.getElementById('lightbox');
-        const closeBtn = document.getElementById('closeBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        const lightbox = document.getElementById('lightbox');
+        const items = document.querySelectorAll('.portfolio-item');
 
-        // Open lightbox
+        // Attach click handlers
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                openLightbox(index);
+            });
+        });
+
         function openLightbox(index) {
             currentIndex = index;
             updateLightbox();
-            lightboxEl.classList.add('active');
+            lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Close lightbox
         function closeLightbox() {
-            lightboxEl.classList.remove('active');
+            lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Next image
-        function nextImage() {
-            if (currentIndex < portfolioData.length - 1) {
-                currentIndex++;
-                updateLightbox();
-            }
-        }
-
-        // Previous image
-        function prevImage() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateLightbox();
-            }
-        }
-
-        // Update lightbox display
         function updateLightbox() {
             const data = portfolioData[currentIndex];
             document.getElementById('lightbox-img').src = data.img;
             document.getElementById('lightbox-title').textContent = data.title;
             document.getElementById('lightbox-desc').textContent = data.desc;
-            document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} of ${portfolioData.length}`;
             
+            const prevBtn = document.querySelector('.lightbox-prev');
+            const nextBtn = document.querySelector('.lightbox-next');
             prevBtn.disabled = currentIndex === 0;
             nextBtn.disabled = currentIndex === portfolioData.length - 1;
         }
 
-        // Event listeners
-        closeBtn.addEventListener('click', closeLightbox);
-        nextBtn.addEventListener('click', nextImage);
-        prevBtn.addEventListener('click', prevImage);
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        
+        document.querySelector('.lightbox-prev').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateLightbox();
+            }
+        });
 
-        // Close on background click
-        lightboxEl.addEventListener('click', function(e) {
-            if (e.target === lightboxEl) {
+        document.querySelector('.lightbox-next').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (currentIndex < portfolioData.length - 1) {
+                currentIndex++;
+                updateLightbox();
+            }
+        });
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
                 closeLightbox();
             }
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (lightboxEl.classList.contains('active')) {
+            if (lightbox.classList.contains('active')) {
                 if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowRight') nextImage();
-                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    currentIndex--;
+                    updateLightbox();
+                }
+                if (e.key === 'ArrowRight' && currentIndex < portfolioData.length - 1) {
+                    currentIndex++;
+                    updateLightbox();
+                }
             }
         });
     </script>
