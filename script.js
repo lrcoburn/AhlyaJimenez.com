@@ -29,14 +29,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const img = item.querySelector('.portfolio-image img');
             const placeholder = item.querySelector('.placeholder-image');
+            const heading = item.querySelector('h3');
+            const description = item.querySelector('p');
             return {
                 index,
                 element: item,
                 imgSrc: img ? img.getAttribute('src') : null,
                 imgAlt: img ? img.getAttribute('alt') : '',
                 placeholderText: placeholder ? placeholder.textContent : '',
-                title: item.querySelector('h3') ? item.querySelector('h3').textContent : '',
-                description: item.querySelector('p') ? item.querySelector('p').textContent : ''
+                title: heading ? heading.textContent : '',
+                description: description ? description.textContent : ''
             };
         })
         .filter(Boolean)
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let currentPosition = 0;
+    let triggerElement = null;
 
     function showItem(position) {
         currentPosition = (position + orderedEntries.length) % orderedEntries.length;
@@ -68,23 +71,29 @@ document.addEventListener('DOMContentLoaded', function () {
         lightboxCounter.textContent = (currentPosition + 1) + ' of ' + orderedEntries.length;
     }
 
-    function openLightboxAt(position) {
+    function openLightboxAt(position, invokerElement) {
+        triggerElement = invokerElement || null;
         showItem(position);
         overlay.classList.add('active');
         document.body.classList.add('lightbox-open');
+        closeBtn.focus();
     }
 
     function closeLightbox() {
         overlay.classList.remove('active');
         document.body.classList.remove('lightbox-open');
+        if (triggerElement) {
+            triggerElement.focus();
+            triggerElement = null;
+        }
     }
 
     orderedEntries.forEach((entry, position) => {
-        entry.element.addEventListener('click', () => openLightboxAt(position));
+        entry.element.addEventListener('click', () => openLightboxAt(position, entry.element));
         entry.element.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
-                openLightboxAt(position);
+                openLightboxAt(position, entry.element);
             }
         });
     });
