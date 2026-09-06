@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('lightbox-open');
     }
 
-    portfolioItems.forEach((item, index) => {
+    portfolioItems.forEach((item, fallbackIndex) => {
+        const index = item.dataset.index !== undefined ? parseInt(item.dataset.index, 10) : fallbackIndex;
         item.addEventListener('click', () => openLightbox(index));
         item.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
