@@ -38,7 +38,7 @@
             <p class="section-intro">View examples of custom horse portraits I've created</p>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="0" tabindex="0" role="button" aria-label="View Acrylic Portrait in lightbox">
                     <div class="portfolio-image">
                         <img src="images/Acrylic.jpeg" alt="Acrylic Portrait">
                     </div>
@@ -46,7 +46,7 @@
                     <p>Acrylic</p>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="1" tabindex="0" role="button" aria-label="View Graphite/Black and White Portrait in lightbox">
                     <div class="portfolio-image">
                         <img src="images/Graphite:Black and white.jpg" alt="Graphite/Black and White Portrait">
                     </div>
@@ -54,7 +54,7 @@
                     <p>Graphite & Ink</p>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="2" tabindex="0" role="button" aria-label="View Mixed Media Portrait in lightbox">
                     <div class="portfolio-image">
                         <img src="images/Mixed media image.jpeg" alt="Mixed Media Portrait">
                     </div>
@@ -62,7 +62,7 @@
                     <p>Mixed Media</p>
                 </div>
 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="3" tabindex="0" role="button" aria-label="View Digital Portrait in lightbox">
                     <div class="portfolio-image">
                         <img src="images/Digital.jpg" alt="Digital Portrait">
                     </div>
@@ -70,7 +70,7 @@
                     <p>Digital</p>
                 </div>
 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="4" tabindex="0" role="button" aria-label="View Additional Upgrades in lightbox">
                     <div class="portfolio-image">
                         <div class="placeholder-image">Add-Ons</div>
                     </div>
@@ -84,6 +84,30 @@
             </p>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="portfolio-lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Portfolio item lightbox" aria-hidden="true">
+        <div class="lightbox-overlay" id="lightbox-overlay"></div>
+        <div class="lightbox-container">
+            <div class="lightbox-header">
+                <span class="lightbox-counter" id="lightbox-counter">1 of 5</span>
+                <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+            </div>
+            <div class="lightbox-card-wrapper">
+                <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous portfolio item">&#10094;</button>
+                <div class="lightbox-card" id="lightbox-card">
+                    <div class="lightbox-image-container" id="lightbox-image-container">
+                        <img id="lightbox-img" src="images/Acrylic.jpeg" alt="Acrylic Portrait">
+                    </div>
+                    <div class="lightbox-details">
+                        <h3 id="lightbox-title" class="lightbox-title">Acrylic Portrait</h3>
+                        <p id="lightbox-desc" class="lightbox-desc">Acrylic</p>
+                    </div>
+                </div>
+                <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next portfolio item">&#10095;</button>
+            </div>
+        </div>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -196,5 +220,6 @@
             <p>&copy; 2026 Ahlya Jimenez. All rights reserved. | Hand-crafted with passion and paint.</p>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
