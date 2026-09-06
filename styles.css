@@ -12,6 +12,7 @@
     --accent-gold: #D4AF37;
     --text-dark: #3D2817;
     --wood-light: #C19A6B;
+    --text-darker: #222222;
 }
 
 html {
@@ -174,7 +175,7 @@ body {
 .contact h2 {
     font-family: 'Cinzel', serif;
     font-size: 2.5rem;
-    color: var(--dark-brown);
+    color: var(--text-darker);
     text-align: center;
     margin-bottom: 1rem;
     letter-spacing: 2px;
@@ -183,7 +184,7 @@ body {
 .section-intro {
     text-align: center;
     font-size: 1.1rem;
-    color: var(--primary-brown);
+    color: var(--text-darker);
     margin-bottom: 3rem;
     font-style: italic;
 }
@@ -261,20 +262,20 @@ body {
 
 .portfolio-item h3 {
     padding: 1.5rem 1.5rem 0.5rem;
-    color: var(--dark-brown);
+    color: var(--text-darker);
     font-family: 'Cinzel', serif;
     font-size: 1.2rem;
 }
 
 .portfolio-item p {
     padding: 0 1.5rem 1.5rem;
-    color: var(--primary-brown);
+    color: var(--text-darker);
     font-size: 0.95rem;
 }
 
 .portfolio-note {
     text-align: center;
-    color: var(--primary-brown);
+    color: var(--text-darker);
     font-style: italic;
     margin-top: 2rem;
 }
@@ -305,7 +306,7 @@ body {
 
 .about-text p {
     margin-bottom: 1.5rem;
-    color: var(--text-dark);
+    color: var(--text-darker);
     font-size: 1.1rem;
     line-height: 1.8;
     background: rgba(245, 230, 211, 0.6);
@@ -368,13 +369,13 @@ body {
 }
 
 .step h3 {
-    color: var(--dark-brown);
+    color: var(--text-darker);
     margin-bottom: 1rem;
     font-family: 'Cinzel', serif;
 }
 
 .step p {
-    color: var(--text-dark);
+    color: var(--text-darker);
     font-size: 0.95rem;
 }
 
@@ -412,7 +413,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--dark-brown);
+    color: var(--text-darker);
     font-weight: 500;
     font-family: 'Cinzel', serif;
 }
@@ -425,7 +426,7 @@ body {
     border-radius: 4px;
     font-family: 'Lora', serif;
     font-size: 1rem;
-    color: var(--text-dark);
+    color: var(--text-darker);
     transition: border-color 0.3s ease;
 }
 
@@ -439,7 +440,7 @@ body {
 .form-group small {
     display: block;
     margin-top: 0.5rem;
-    color: var(--primary-brown);
+    color: var(--text-darker);
     font-size: 0.9rem;
 }
 
@@ -475,18 +476,18 @@ body {
 }
 
 .contact-info h3 {
-    color: var(--dark-brown);
+    color: var(--text-darker);
     margin-bottom: 1rem;
     font-family: 'Cinzel', serif;
 }
 
 .contact-info p {
-    color: var(--text-dark);
+    color: var(--text-darker);
 }
 
 .contact-info a {
-    color: var(--primary-brown);
-    text-decoration: none;
+    color: var(--text-darker);
+    text-decoration: underline;
     font-weight: 600;
     transition: color 0.3s ease;
 }
