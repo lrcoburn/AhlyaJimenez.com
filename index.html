@@ -38,7 +38,7 @@
             <p class="section-intro">View examples of custom horse portraits I've created</p>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item" data-index="0">
+                <div class="portfolio-item" onclick="openLightbox(0)">
                     <div class="portfolio-image">
                         <img src="images/Acrylic.jpeg" alt="Acrylic Portrait">
                     </div>
@@ -46,7 +46,7 @@
                     <p>Acrylic</p>
                 </div>
                 
-                <div class="portfolio-item" data-index="1">
+                <div class="portfolio-item" onclick="openLightbox(1)">
                     <div class="portfolio-image">
                         <img src="images/Graphite:Black and white.jpg" alt="Graphite/Black and White Portrait">
                     </div>
@@ -54,7 +54,7 @@
                     <p>Graphite & Ink</p>
                 </div>
                 
-                <div class="portfolio-item" data-index="2">
+                <div class="portfolio-item" onclick="openLightbox(2)">
                     <div class="portfolio-image">
                         <img src="images/Mixed media image.jpeg" alt="Mixed Media Portrait">
                     </div>
@@ -62,7 +62,7 @@
                     <p>Mixed Media</p>
                 </div>
 
-                <div class="portfolio-item" data-index="3">
+                <div class="portfolio-item" onclick="openLightbox(3)">
                     <div class="portfolio-image">
                         <img src="images/Digital.jpg" alt="Digital Portrait">
                     </div>
@@ -70,7 +70,7 @@
                     <p>Digital</p>
                 </div>
 
-                <div class="portfolio-item" data-index="4">
+                <div class="portfolio-item" onclick="openLightbox(4)">
                     <div class="portfolio-image">
                         <div class="placeholder-image">Add-Ons</div>
                     </div>
@@ -86,8 +86,8 @@
     </section>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="lightbox">
-        <div class="lightbox-content">
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
             <div class="lightbox-image">
                 <img id="lightbox-img" src="" alt="">
@@ -95,13 +95,6 @@
             <div class="lightbox-info">
                 <h3 id="lightbox-title"></h3>
                 <p id="lightbox-desc"></p>
-                <div class="lightbox-counter">
-                    <span id="lightbox-counter"></span>
-                </div>
-            </div>
-            <div class="lightbox-nav">
-                <button class="lightbox-button" id="prev-btn" onclick="prevItem()">← Previous</button>
-                <button class="lightbox-button" id="next-btn" onclick="nextItem()">Next →</button>
             </div>
         </div>
     </div>
@@ -227,50 +220,23 @@
             { title: 'Additional Upgrades', desc: 'Custom Options', img: '' }
         ];
 
-        let currentIndex = 0;
-
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        portfolioItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                currentIndex = index;
-                openLightbox();
-            });
-        });
-
-        function openLightbox() {
-            const data = portfolioData[currentIndex];
+        function openLightbox(index) {
+            const data = portfolioData[index];
             document.getElementById('lightbox-img').src = data.img;
             document.getElementById('lightbox-title').textContent = data.title;
             document.getElementById('lightbox-desc').textContent = data.desc;
-            document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} of ${portfolioData.length}`;
-            
-            document.getElementById('prev-btn').disabled = currentIndex === 0;
-            document.getElementById('next-btn').disabled = currentIndex === portfolioData.length - 1;
-            
             document.getElementById('lightbox').classList.add('active');
         }
 
-        function closeLightbox() {
+        function closeLightbox(event) {
+            // Close if clicking the X button or outside the content box
+            if (event && event.target.id !== 'lightbox') return;
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        function nextItem() {
-            if (currentIndex < portfolioData.length - 1) {
-                currentIndex++;
-                openLightbox();
-            }
-        }
-
-        function prevItem() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                openLightbox();
-            }
-        }
-
-        // Close lightbox when clicking outside
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') {
+        // Close lightbox when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
                 closeLightbox();
             }
         });
