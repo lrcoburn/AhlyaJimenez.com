@@ -38,7 +38,7 @@
             <p class="section-intro">View examples of custom horse portraits I've created</p>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="0" tabindex="0" role="button" aria-label="View Acrylic Portrait details">
                     <div class="portfolio-image">
                         <img src="images/Acrylic.jpeg" alt="Acrylic Portrait">
                     </div>
@@ -46,7 +46,7 @@
                     <p>Acrylic</p>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="1" tabindex="0" role="button" aria-label="View Graphite/Black and White Portrait details">
                     <div class="portfolio-image">
                         <img src="images/Graphite:Black and white.jpg" alt="Graphite/Black and White Portrait">
                     </div>
@@ -54,7 +54,7 @@
                     <p>Graphite & Ink</p>
                 </div>
                 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="2" tabindex="0" role="button" aria-label="View Mixed Media Portrait details">
                     <div class="portfolio-image">
                         <img src="images/Mixed media image.jpeg" alt="Mixed Media Portrait">
                     </div>
@@ -62,7 +62,7 @@
                     <p>Mixed Media</p>
                 </div>
 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="3" tabindex="0" role="button" aria-label="View Digital Portrait details">
                     <div class="portfolio-image">
                         <img src="images/Digital.jpg" alt="Digital Portrait">
                     </div>
@@ -70,7 +70,7 @@
                     <p>Digital</p>
                 </div>
 
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-index="4" tabindex="0" role="button" aria-label="View Additional Upgrades details">
                     <div class="portfolio-image">
                         <div class="placeholder-image">Add-Ons</div>
                     </div>
@@ -82,6 +82,22 @@
             <p class="portfolio-note">
                 <em>Each portrait is custom-created based on your reference photos and vision.</em>
             </p>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox-overlay" id="lightboxOverlay">
+            <div class="lightbox-box">
+                <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+                <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous portfolio item">&#10094;</button>
+                <div class="lightbox-image">
+                    <img id="lightboxImg" src="" alt="">
+                    <div class="placeholder-image" id="lightboxPlaceholder"></div>
+                </div>
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+                <p class="lightbox-counter" id="lightboxCounter"></p>
+                <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next portfolio item">&#10095;</button>
+            </div>
         </div>
     </section>
 
@@ -196,5 +212,7 @@
             <p>&copy; 2026 Ahlya Jimenez. All rights reserved. | Hand-crafted with passion and paint.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
