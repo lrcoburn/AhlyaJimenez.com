@@ -15,24 +15,42 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Build the portfolio data from the grid so content stays in sync.
-    const items = portfolioItems.map((item) => {
-        const img = item.querySelector('.portfolio-image img');
-        const placeholder = item.querySelector('.placeholder-image');
-        return {
-            imgSrc: img ? img.getAttribute('src') : null,
-            imgAlt: img ? img.getAttribute('alt') : '',
-            placeholderText: placeholder ? placeholder.textContent : '',
-            title: item.querySelector('h3') ? item.querySelector('h3').textContent : '',
-            description: item.querySelector('p') ? item.querySelector('p').textContent : ''
-        };
-    });
+    // Build the portfolio data from the grid so content stays in sync,
+    // ordering entries by each item's data-index attribute (not DOM order)
+    // so navigation stays correct even if the markup order ever changes.
+    const orderedEntries = portfolioItems
+        .map((item) => {
+            const rawIndex = item.dataset.index;
+            const index = rawIndex !== undefined ? parseInt(rawIndex, 10) : NaN;
+            if (Number.isNaN(index)) {
+                console.warn('Portfolio item is missing a valid data-index attribute and will be skipped in the lightbox.', item);
+                return null;
+            }
 
-    let currentIndex = 0;
+            const img = item.querySelector('.portfolio-image img');
+            const placeholder = item.querySelector('.placeholder-image');
+            return {
+                index,
+                element: item,
+                imgSrc: img ? img.getAttribute('src') : null,
+                imgAlt: img ? img.getAttribute('alt') : '',
+                placeholderText: placeholder ? placeholder.textContent : '',
+                title: item.querySelector('h3') ? item.querySelector('h3').textContent : '',
+                description: item.querySelector('p') ? item.querySelector('p').textContent : ''
+            };
+        })
+        .filter(Boolean)
+        .sort((a, b) => a.index - b.index);
 
-    function showItem(index) {
-        currentIndex = (index + items.length) % items.length;
-        const data = items[currentIndex];
+    if (orderedEntries.length === 0) {
+        return;
+    }
+
+    let currentPosition = 0;
+
+    function showItem(position) {
+        currentPosition = (position + orderedEntries.length) % orderedEntries.length;
+        const data = orderedEntries[currentPosition];
 
         if (data.imgSrc) {
             lightboxImg.src = data.imgSrc;
@@ -47,11 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         lightboxTitle.textContent = data.title;
         lightboxDesc.textContent = data.description;
-        lightboxCounter.textContent = (currentIndex + 1) + ' of ' + items.length;
+        lightboxCounter.textContent = (currentPosition + 1) + ' of ' + orderedEntries.length;
     }
 
-    function openLightbox(index) {
-        showItem(index);
+    function openLightboxAt(position) {
+        showItem(position);
         overlay.classList.add('active');
         document.body.classList.add('lightbox-open');
     }
@@ -61,20 +79,19 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('lightbox-open');
     }
 
-    portfolioItems.forEach((item, fallbackIndex) => {
-        const index = item.dataset.index !== undefined ? parseInt(item.dataset.index, 10) : fallbackIndex;
-        item.addEventListener('click', () => openLightbox(index));
-        item.addEventListener('keydown', (event) => {
+    orderedEntries.forEach((entry, position) => {
+        entry.element.addEventListener('click', () => openLightboxAt(position));
+        entry.element.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
-                openLightbox(index);
+                openLightboxAt(position);
             }
         });
     });
 
     closeBtn.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', () => showItem(currentIndex - 1));
-    nextBtn.addEventListener('click', () => showItem(currentIndex + 1));
+    prevBtn.addEventListener('click', () => showItem(currentPosition - 1));
+    nextBtn.addEventListener('click', () => showItem(currentPosition + 1));
 
     overlay.addEventListener('click', (event) => {
         if (event.target === overlay) {
@@ -89,9 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'Escape') {
             closeLightbox();
         } else if (event.key === 'ArrowLeft') {
-            showItem(currentIndex - 1);
+            showItem(currentPosition - 1);
         } else if (event.key === 'ArrowRight') {
-            showItem(currentIndex + 1);
+            showItem(currentPosition + 1);
         }
     });
 });
