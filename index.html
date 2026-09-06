@@ -198,12 +198,12 @@
     </footer>
 
     <!-- Full-Screen Lightbox Popup -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <div id="lightbox" class="lightbox">
         <!-- Close Button -->
-        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button id="closeBtn" class="lightbox-close">&times;</button>
         
         <!-- Left Arrow -->
-        <button class="lightbox-arrow lightbox-prev" onclick="prevImage(event)">&#10094;</button>
+        <button id="prevBtn" class="lightbox-arrow lightbox-prev">&#10094;</button>
         
         <!-- Image Container -->
         <div class="lightbox-image-container">
@@ -211,7 +211,7 @@
         </div>
         
         <!-- Right Arrow -->
-        <button class="lightbox-arrow lightbox-next" onclick="nextImage(event)">&#10095;</button>
+        <button id="nextBtn" class="lightbox-arrow lightbox-next">&#10095;</button>
         
         <!-- Info Section -->
         <div class="lightbox-info-section">
@@ -231,36 +231,42 @@
         ];
 
         let currentIndex = 0;
+        const lightboxEl = document.getElementById('lightbox');
+        const closeBtn = document.getElementById('closeBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
+        // Open lightbox
         function openLightbox(index) {
             currentIndex = index;
             updateLightbox();
-            document.getElementById('lightbox').classList.add('active');
+            lightboxEl.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeLightbox(event) {
-            if (event && event.target.id !== 'lightbox') return;
-            document.getElementById('lightbox').classList.remove('active');
+        // Close lightbox
+        function closeLightbox() {
+            lightboxEl.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        function nextImage(event) {
-            event.stopPropagation();
+        // Next image
+        function nextImage() {
             if (currentIndex < portfolioData.length - 1) {
                 currentIndex++;
                 updateLightbox();
             }
         }
 
-        function prevImage(event) {
-            event.stopPropagation();
+        // Previous image
+        function prevImage() {
             if (currentIndex > 0) {
                 currentIndex--;
                 updateLightbox();
             }
         }
 
+        // Update lightbox display
         function updateLightbox() {
             const data = portfolioData[currentIndex];
             document.getElementById('lightbox-img').src = data.img;
@@ -268,15 +274,28 @@
             document.getElementById('lightbox-desc').textContent = data.desc;
             document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} of ${portfolioData.length}`;
             
-            document.querySelector('.lightbox-prev').disabled = currentIndex === 0;
-            document.querySelector('.lightbox-next').disabled = currentIndex === portfolioData.length - 1;
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === portfolioData.length - 1;
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').classList.contains('active')) {
+        // Event listeners
+        closeBtn.addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+
+        // Close on background click
+        lightboxEl.addEventListener('click', function(e) {
+            if (e.target === lightboxEl) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (lightboxEl.classList.contains('active')) {
                 if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowRight') nextImage(e);
-                if (e.key === 'ArrowLeft') prevImage(e);
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
             }
         });
     </script>
