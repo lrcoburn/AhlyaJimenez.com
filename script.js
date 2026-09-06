@@ -1,5 +1,6 @@
 // Portfolio Lightbox
 document.addEventListener('DOMContentLoaded', function () {
+    const portfolioGrid = document.querySelector('.portfolio-grid');
     const portfolioItems = Array.from(document.querySelectorAll('.portfolio-item'));
     const overlay = document.getElementById('lightboxOverlay');
     const closeBtn = document.getElementById('lightboxClose');
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const lightboxDesc = document.getElementById('lightboxDesc');
     const lightboxCounter = document.getElementById('lightboxCounter');
 
-    if (!overlay || portfolioItems.length === 0) {
+    if (!overlay || !portfolioGrid || portfolioItems.length === 0) {
         return;
     }
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return {
                 index,
                 element: item,
+                hasImg: Boolean(img),
                 imgSrc: img ? img.getAttribute('src') : null,
                 imgAlt: img ? img.getAttribute('alt') : '',
                 placeholderText: placeholder ? placeholder.textContent : '',
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentPosition = (position + orderedEntries.length) % orderedEntries.length;
         const data = orderedEntries[currentPosition];
 
-        if (data.imgSrc) {
+        if (data.hasImg) {
             lightboxImg.src = data.imgSrc;
             lightboxImg.alt = data.imgAlt;
             lightboxImg.style.display = 'block';
@@ -88,14 +90,35 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    orderedEntries.forEach((entry, position) => {
-        entry.element.addEventListener('click', () => openLightboxAt(position, entry.element));
-        entry.element.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                openLightboxAt(position, entry.element);
-            }
-        });
+    function positionOf(element) {
+        return orderedEntries.findIndex((entry) => entry.element === element);
+    }
+
+    // Use event delegation on the grid container instead of a listener per item.
+    portfolioGrid.addEventListener('click', (event) => {
+        const item = event.target.closest('.portfolio-item');
+        if (!item) {
+            return;
+        }
+        const position = positionOf(item);
+        if (position !== -1) {
+            openLightboxAt(position, item);
+        }
+    });
+
+    portfolioGrid.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') {
+            return;
+        }
+        const item = event.target.closest('.portfolio-item');
+        if (!item) {
+            return;
+        }
+        const position = positionOf(item);
+        if (position !== -1) {
+            event.preventDefault();
+            openLightboxAt(position, item);
+        }
     });
 
     closeBtn.addEventListener('click', closeLightbox);
