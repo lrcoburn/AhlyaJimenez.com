@@ -85,28 +85,6 @@
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-        
-        <button class="lightbox-nav-btn lightbox-prev" onclick="prevImage(event)">&#10094;</button>
-        
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <div class="lightbox-image">
-                <img id="lightbox-img" src="" alt="">
-            </div>
-            <div class="lightbox-info">
-                <h3 id="lightbox-title"></h3>
-                <p id="lightbox-desc"></p>
-                <div class="lightbox-counter">
-                    <span id="lightbox-counter"></span>
-                </div>
-            </div>
-        </div>
-        
-        <button class="lightbox-nav-btn lightbox-next" onclick="nextImage(event)">&#10095;</button>
-    </div>
-
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -219,6 +197,30 @@
         </div>
     </footer>
 
+    <!-- Full-Screen Lightbox Popup -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <!-- Close Button -->
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        
+        <!-- Left Arrow -->
+        <button class="lightbox-arrow lightbox-prev" onclick="prevImage(event)">&#10094;</button>
+        
+        <!-- Image Container -->
+        <div class="lightbox-image-container">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        
+        <!-- Right Arrow -->
+        <button class="lightbox-arrow lightbox-next" onclick="nextImage(event)">&#10095;</button>
+        
+        <!-- Info Section -->
+        <div class="lightbox-info-section">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-desc"></p>
+            <p id="lightbox-counter" class="lightbox-counter"></p>
+        </div>
+    </div>
+
     <script>
         const portfolioData = [
             { title: 'Acrylic Portrait', desc: 'Acrylic', img: 'images/Acrylic.jpeg' },
@@ -234,11 +236,13 @@
             currentIndex = index;
             updateLightbox();
             document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox(event) {
             if (event && event.target.id !== 'lightbox') return;
             document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         function nextImage(event) {
@@ -264,22 +268,13 @@
             document.getElementById('lightbox-desc').textContent = data.desc;
             document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} of ${portfolioData.length}`;
             
-            // Disable prev button on first item
             document.querySelector('.lightbox-prev').disabled = currentIndex === 0;
-            // Disable next button on last item
             document.querySelector('.lightbox-next').disabled = currentIndex === portfolioData.length - 1;
         }
 
-        // Close lightbox when pressing Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-
-        // Arrow key navigation
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
                 if (e.key === 'ArrowRight') nextImage(e);
                 if (e.key === 'ArrowLeft') prevImage(e);
             }
