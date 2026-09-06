@@ -495,6 +495,29 @@ body {
     color: var(--accent-gold);
 }
 
+/* Keep non-hero section text dark for readable contrast. */
+.portfolio,
+.about,
+.commission,
+.contact {
+    color: var(--text-dark);
+}
+
+.portfolio .section-intro,
+.portfolio-item p,
+.portfolio-note,
+.about-text p,
+.step h3,
+.step p,
+.contact .section-intro,
+.form-group label,
+.form-group small,
+.contact-info h3,
+.contact-info p,
+.contact-info a {
+    color: var(--text-dark);
+}
+
 /* Footer */
 .footer {
     background-color: var(--dark-brown);
