@@ -120,10 +120,17 @@ body {
 .hero-content h1 {
     font-family: 'Cinzel', serif;
     font-size: 4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--accent-gold);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 3px;
+}
+
+.hero-content .hero-specialty {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-style: normal;
+    letter-spacing: 2px;
 }
 
 .hero-content p {
@@ -131,6 +138,10 @@ body {
     margin-bottom: 2rem;
     color: var(--cream);
     font-style: italic;
+}
+
+.hero-content .hero-motto {
+    margin-bottom: 2rem;
 }
 
 .cta-button {
