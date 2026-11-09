@@ -150,7 +150,7 @@
             <h2>Get in Touch</h2>
             <p class="section-intro">Ready to commission your horse portrait? Let's create something beautiful together.</p>
             
-            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form class="contact-form" id="commission-form">
                 <div class="form-group">
                     <label for="name">Your Name *</label>
                     <input type="text" id="name" name="name" required>
@@ -183,6 +183,7 @@
                 </div>
                 
                 <button type="submit" class="submit-button">Submit Commission Request</button>
+                <p id="form-status" role="status" aria-live="polite"></p>
             </form>
 
             <div class="contact-info">
@@ -213,7 +214,68 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        const supabaseClient = supabase.createClient(
+            'https://vzqbdlbxthkgethvfral.supabase.co',
+            'sb_publishable_hnrM3XmUg_vOIhlNnXIRSw_MtKO97Wz'
+        );
+
+        const MAX_FILES = 5;
+        const MAX_FILE_BYTES = 10 * 1024 * 1024;
+        const commissionForm = document.getElementById('commission-form');
+        const formStatus = document.getElementById('form-status');
+
+        commissionForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const button = commissionForm.querySelector('.submit-button');
+            const files = Array.from(document.getElementById('file-upload').files);
+
+            if (files.length > MAX_FILES) {
+                formStatus.textContent = 'Please upload no more than ' + MAX_FILES + ' photos.';
+                return;
+            }
+            if (files.some(f => f.size > MAX_FILE_BYTES)) {
+                formStatus.textContent = 'Each photo must be 10 MB or smaller.';
+                return;
+            }
+
+            button.disabled = true;
+            formStatus.textContent = 'Submitting...';
+
+            try {
+                const folder = crypto.randomUUID();
+                const photoPaths = [];
+                for (const file of files) {
+                    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+                    const path = folder + '/' + Date.now() + '-' + safeName;
+                    const { error } = await supabaseClient.storage
+                        .from('commission-photos')
+                        .upload(path, file);
+                    if (error) throw error;
+                    photoPaths.push(path);
+                }
+
+                const { error } = await supabaseClient.from('commission_requests').insert({
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value || null,
+                    horse_names: document.getElementById('horse-name').value || null,
+                    message: document.getElementById('message').value,
+                    photo_paths: photoPaths
+                });
+                if (error) throw error;
+
+                commissionForm.reset();
+                formStatus.textContent = "Thank you! Your request was sent. I'll be in touch soon.";
+            } catch (err) {
+                console.error(err);
+                formStatus.textContent = 'Sorry, something went wrong. Please email me directly instead.';
+            } finally {
+                button.disabled = false;
+            }
+        });
+
         const portfolioData = [
             { title: 'Acrylic Portrait', desc: 'Acrylic', img: 'images/Acrylic.png' },
             { title: 'Graphite/Black and White Portrait', desc: 'Graphite & Ink', img: 'images/Graphite:Black and white.jpg' },
