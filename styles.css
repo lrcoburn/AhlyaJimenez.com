@@ -237,6 +237,11 @@ body {
     transition: transform 0.3s ease;
 }
 
+.portfolio-image .acrylic-image {
+    object-fit: contain;
+    background: var(--cream);
+}
+
 .portfolio-item:hover .portfolio-image img {
     transform: scale(1.05);
 }
