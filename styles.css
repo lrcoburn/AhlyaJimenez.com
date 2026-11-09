@@ -185,6 +185,27 @@ body {
                 );
 }
 
+.pricing {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(184, 50, 128, 0.12) 0%, rgba(184, 139, 197, 0.18) 100%);
+}
+
+.price-list-link {
+    display: block;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 5px solid var(--cream);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(26, 15, 10, 0.25);
+}
+
+.price-list-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .portfolio h2,
 .about h2,
 .commission h2,
