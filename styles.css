@@ -5,13 +5,13 @@
 }
 
 :root {
-    --primary-brown: #8B6F47;
-    --dark-brown: #5C4A2F;
-    --light-brown: #A89968;
+    --primary-purple: #762B83;
+    --dark-purple: #34133F;
+    --light-purple: #B88BC5;
     --cream: #F5E6D3;
     --accent-gold: #D4AF37;
     --text-dark: #1A0F0A;
-    --wood-light: #C19A6B;
+    --magenta: #B83280;
 }
 
 html {
@@ -22,21 +22,24 @@ body {
     font-family: 'Lora', serif;
     color: var(--text-dark);
     line-height: 1.6;
-    background: linear-gradient(135deg, #5C4A2F 0%, #8B6F47 25%, #6B5A3E 50%, #8B6F47 75%, #5C4A2F 100%),
+    background:
                 repeating-linear-gradient(
-                    90deg,
-                    rgba(0, 0, 0, 0.03) 0px,
-                    rgba(0, 0, 0, 0.03) 2px,
-                    transparent 2px,
-                    transparent 4px
-                );
+                    135deg,
+                    rgba(255, 255, 255, 0.025) 0px,
+                    rgba(255, 255, 255, 0.025) 1px,
+                    transparent 1px,
+                    transparent 5px
+                ),
+                radial-gradient(ellipse at 16% 18%, rgba(208, 54, 140, 0.48), transparent 38%),
+                radial-gradient(ellipse at 84% 32%, rgba(143, 84, 196, 0.48), transparent 42%),
+                linear-gradient(135deg, #35103F 0%, #79266F 48%, #442054 100%);
     background-attachment: fixed;
     min-height: 100vh;
 }
 
 /* Navigation */
 .navbar {
-    background-color: var(--dark-brown);
+    background-color: var(--dark-purple);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -98,8 +101,11 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="wood" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">[...]');
+    background:
+                repeating-linear-gradient(38deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 9px),
+                radial-gradient(ellipse at 20% 28%, rgba(220, 57, 145, 0.68), transparent 42%),
+                radial-gradient(ellipse at 82% 68%, rgba(137, 79, 190, 0.72), transparent 44%),
+                linear-gradient(135deg, rgba(44, 13, 54, 0.82), rgba(85, 23, 91, 0.68));
     background-size: cover;
     background-position: center;
     padding: 150px 2rem;
@@ -131,7 +137,7 @@ body {
     display: inline-block;
     padding: 1rem 2.5rem;
     background-color: var(--accent-gold);
-    color: var(--dark-brown);
+    color: var(--dark-purple);
     text-decoration: none;
     font-family: 'Cinzel', serif;
     font-weight: 600;
@@ -158,11 +164,11 @@ body {
 /* Portfolio Section */
 .portfolio {
     padding: 80px 0;
-    background: linear-gradient(135deg, rgba(168, 153, 104, 0.1) 0%, rgba(91, 74, 47, 0.1) 100%),
+    background: linear-gradient(135deg, rgba(184, 139, 197, 0.18) 0%, rgba(184, 50, 128, 0.12) 100%),
                 repeating-linear-gradient(
                     0deg,
-                    rgba(139, 111, 71, 0.05) 0px,
-                    rgba(139, 111, 71, 0.05) 1px,
+                    rgba(118, 43, 131, 0.045) 0px,
+                    rgba(118, 43, 131, 0.045) 1px,
                     transparent 1px,
                     transparent 2px
                 );
@@ -217,7 +223,7 @@ body {
     width: 100%;
     height: 180px;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--wood-light) 0%, var(--primary-brown) 100%);
+    background: linear-gradient(135deg, var(--magenta) 0%, var(--primary-purple) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,7 +242,7 @@ body {
 }
 
 .placeholder-image {
-    background: linear-gradient(135deg, var(--wood-light) 0%, var(--primary-brown) 100%),
+    background: linear-gradient(135deg, var(--magenta) 0%, var(--primary-purple) 100%),
                 repeating-linear-gradient(
                     45deg,
                     rgba(0, 0, 0, 0.05) 0px,
@@ -327,7 +333,7 @@ body {
     transform: translateY(-50%);
     background: rgba(212, 175, 55, 0.8);
     border: none;
-    color: var(--dark-brown);
+    color: var(--dark-purple);
     font-size: 30px;
     padding: 15px 20px;
     cursor: pointer;
@@ -376,11 +382,11 @@ body {
 /* About Section */
 .about {
     padding: 80px 0;
-    background: linear-gradient(to right, rgba(245, 230, 211, 0.3), rgba(201, 154, 107, 0.2)),
+    background: linear-gradient(to right, rgba(245, 230, 211, 0.3), rgba(184, 139, 197, 0.2)),
                 repeating-linear-gradient(
                     90deg,
-                    rgba(139, 111, 71, 0.03) 0px,
-                    rgba(139, 111, 71, 0.03) 1px,
+                    rgba(118, 43, 131, 0.035) 0px,
+                    rgba(118, 43, 131, 0.035) 1px,
                     transparent 1px,
                     transparent 2px
                 );
@@ -411,11 +417,11 @@ body {
 /* Commission Section */
 .commission {
     padding: 80px 0;
-    background: linear-gradient(135deg, rgba(168, 153, 104, 0.15) 0%, rgba(91, 74, 47, 0.15) 100%),
+    background: linear-gradient(135deg, rgba(184, 139, 197, 0.2) 0%, rgba(184, 50, 128, 0.14) 100%),
                 repeating-linear-gradient(
                     0deg,
-                    rgba(139, 111, 71, 0.05) 0px,
-                    rgba(139, 111, 71, 0.05) 1px,
+                    rgba(118, 43, 131, 0.045) 0px,
+                    rgba(118, 43, 131, 0.045) 1px,
                     transparent 1px,
                     transparent 2px
                 );
@@ -447,7 +453,7 @@ body {
 }
 
 .step-number {
-    background: var(--primary-brown);
+    background: var(--primary-purple);
     color: var(--cream);
     width: 60px;
     height: 60px;
@@ -475,11 +481,11 @@ body {
 /* Contact Section */
 .contact {
     padding: 80px 0;
-    background: linear-gradient(to right, rgba(245, 230, 211, 0.25), rgba(201, 154, 107, 0.15)),
+    background: linear-gradient(to right, rgba(245, 230, 211, 0.25), rgba(184, 139, 197, 0.18)),
                 repeating-linear-gradient(
                     90deg,
-                    rgba(139, 111, 71, 0.03) 0px,
-                    rgba(139, 111, 71, 0.03) 1px,
+                    rgba(118, 43, 131, 0.035) 0px,
+                    rgba(118, 43, 131, 0.035) 1px,
                     transparent 1px,
                     transparent 2px
                 );
@@ -515,7 +521,7 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 2px solid var(--light-brown);
+    border: 2px solid var(--light-purple);
     border-radius: 4px;
     font-family: 'Lora', serif;
     font-size: 1rem;
@@ -540,9 +546,9 @@ body {
 .submit-button {
     width: 100%;
     padding: 1rem;
-    background-color: var(--primary-brown);
+    background-color: var(--primary-purple);
     color: var(--cream);
-    border: 2px solid var(--primary-brown);
+    border: 2px solid var(--primary-purple);
     border-radius: 4px;
     font-family: 'Cinzel', serif;
     font-size: 1rem;
@@ -553,7 +559,7 @@ body {
 
 .submit-button:hover {
     background-color: var(--accent-gold);
-    color: var(--dark-brown);
+    color: var(--dark-purple);
     border-color: var(--accent-gold);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
@@ -579,7 +585,7 @@ body {
 }
 
 .contact-info a {
-    color: var(--primary-brown);
+    color: var(--primary-purple);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
@@ -591,7 +597,7 @@ body {
 
 /* Footer */
 .footer {
-    background-color: var(--dark-brown);
+    background-color: var(--dark-purple);
     color: var(--cream);
     text-align: center;
     padding: 2rem;
